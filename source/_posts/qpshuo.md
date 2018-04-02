@@ -5,4 +5,5 @@ tag: 综艺
 archive: frontEnd
 ---
 
+写东西这种事情，真的得有
 
