@@ -1,5 +1,5 @@
 ---
-title: CSSTIPS
+title: CssTips
 category: front-end
 tag: css
 archive: frontEnd
@@ -36,6 +36,9 @@ archive: frontEnd
   transform: rotate(45deg);
 }
 ```
+参考链接：   
+[使用CSS绘制箭头](http://simaq.github.io/css/2014/03/30/implementation-of-arrows-with-css/)  
+[div+css实现带三角箭头提示框](http://www.cnblogs.com/undefined000/archive/2012/09/24/2700426.html)
 ### 2.  图片裁剪：  `` clip: rect(0, 0, 0, 0);``
 ### 3. [CSS @supports](http://www.webhek.com/post/css-supports.html)  
     火狐浏览器 谷歌浏览器 Opera浏览器
@@ -44,4 +47,6 @@ archive: frontEnd
 ### 5. `mark` 标签 突出显示某个部分
 ### 6. `display` 属性
 ![image.png](http://upload-images.jianshu.io/upload_images/8952934-2c69e5fe0b3f42a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### 7. oo css的作用和注意事项
+![](https://i.imgur.com/GkpMsHp.png)
 

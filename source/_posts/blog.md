@@ -31,6 +31,10 @@ Maupassant 主题支持 disqus uyan livere changyan gitment gitalk valine 等评
 
 >参考链接： https://blog.csdn.net/ganzhilin520/article/details/79048010
            https://blog.csdn.net/yanzi1225627/article/details/77890414
+### 5. hexo gitment采坑
+>参考链接：  
+http://ihtc.cc/2018/02/25/2018-02-25%20_Gitment%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD%E6%8E%A5%E5%85%A5%E8%B8%A9%E5%9D%91%E6%95%99%E7%A8%8B/
+
 
 
 

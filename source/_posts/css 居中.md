@@ -81,8 +81,10 @@ archive: frontEnd
 </div>
 ```
 ![image.png](http://upload-images.jianshu.io/upload_images/8952934-de8a7a5d8fbb5b43.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-#参考文献: 
-[CSS 居中大全](https://jinlong.github.io/2013/08/13/centering-all-the-directions/)
+
+## 参考文献:   
+[CSS 居中大全](https://jinlong.github.io/2013/08/13/centering-all-the-directions/)  
+[CSS制作水平垂直居中对齐](https://www.w3cplus.com/css/vertically-center-content-with-css)
 
 
 
