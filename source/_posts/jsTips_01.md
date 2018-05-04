@@ -1,12 +1,12 @@
 ---
-title: JSTIPS_01
+title: JsTips_01
 category: front-end
 tag: js
-archive: frontEnd
+archive: front-end
 ---
 
 
-1. 事件的捕获和冒泡
+### 事件的捕获和冒泡
 除了IE 之外先捕获 -> 当前节点事件 -> 后冒泡
 
 ```
@@ -27,7 +27,7 @@ document.body.addEventListener("click",function(event){
 点击child:       event catch -> 4 -> 99 ->event bubble
 
 
-2. [动态加载图片取不到宽高](https://segmentfault.com/q/101000000435521)
+### [动态加载图片取不到宽高](https://segmentfault.com/q/101000000435521)
 ``` 
 function loadImage(url, callback) {    
     var img = new Image(); //创建一个Image对象，实现图片的预下载     
@@ -38,9 +38,9 @@ function loadImage(url, callback) {
     img.src = url; 
 }
 ```
-3. [遍历子节点的方法](https://segmentfault.com/a/1190000010661082)
+###  [遍历子节点的方法](https://segmentfault.com/a/1190000010661082)
 
-4. 数组的处理方法是否改变原数组 
+###  数组的处理方法是否改变原数组 
   slice concat join 不会改变
 ```
 var source = [1,2,3,4,5]
@@ -56,11 +56,11 @@ source;shift();
 source.unshift();
 source.reverse();
 ```
-5. h5 选中元素
+###  h5 选中元素
  querySelector（获得第一个满足条件的元素  
  querySelectorAll ( 这个出来的是一个数组）
 
-7. 原生的li 点击事件
+###  原生的li 点击事件
 ``` 
 for(var i = 0; i< reloadDiv.length ;i++){
     index = i;
@@ -70,7 +70,7 @@ for(var i = 0; i< reloadDiv.length ;i++){
      };
  }
 ```
-7. URL 地址 参数获取介绍： 
+###  URL 地址 参数获取介绍： 
 ```
 var url = http://www.jianshu.com/writer#/notebooks/18682777/notes/20130528/preview
 //设置或获取对象指定的文件名或路径。
@@ -89,10 +89,10 @@ alert(window.location.host);//"www.jianshu.com"
 alert(window.location.search);//"" 
 ```
 
-8. [jquery on 和 off 事件](http://www.jb51.net/article/95723.htm)
+###  [jquery on 和 off 事件](http://www.jb51.net/article/95723.htm)
 一个Button 键可能会被调用很多次，可以off 取消之前的click 事件
 
-9. [详解clientHeight、offsetHeight、scrollHeight](http://blog.csdn.net/woxueliuyun/article/details/8638427)
+###  [详解clientHeight、offsetHeight、scrollHeight](http://blog.csdn.net/woxueliuyun/article/details/8638427)
 clientHeight: 内容可视区域的高度  
 offsetHeight: IE、Opera 认为 offsetHeight = clientHeight + 滚动条 + 边框。  
 NS、FF 认为 offsetHeight 是网页内容实际高度，可以小于 clientHeight。
@@ -104,7 +104,7 @@ clientHeight = padding + height -水平滚动条的高度；
 scrollHeight >= clientHeight；
 offsetLeft = 元素border左上角到画布原点的距离 或 到offsetParent的border box顶部的距离。
 
-10. [ES6 的相关知识](https://75team.com/post/5-javascript-%E2%80%9Cbad%E2%80%9D-parts-that-are-fixed-in-es6.html)
+###  [ES6 的相关知识](https://75team.com/post/5-javascript-%E2%80%9Cbad%E2%80%9D-parts-that-are-fixed-in-es6.html)
 >**增加的新功能：**
 箭头操作符 () => {}
 类的支持 class
@@ -116,7 +116,7 @@ offsetLeft = 元素border左上角到画布原点的距离 或 到offsetParent�
 解构
 let const 
 
-11. 上传资源的方法 post put patch 
+###  上传资源的方法 post put patch 
 >POST方法用来创建一个子资源，如 /api/users，会在users下面创建一个user，如users/1
 POST方法不是幂等的，多次执行，将导致多条相同的用户被创建（users/1，users/2 ...而这些用户除了自增长id外有着相同的数据，除非你的系统实现了额外的数据唯一性检查）
 PUT方法用来创建一个URI已知的资源，或对已知资源进行完全替换，比如users/1，

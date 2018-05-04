@@ -2,13 +2,13 @@
 title: Vue
 category: front-end
 tag: Vue
-archive: frontEnd
+archive: front-end
 ---
 
-### 1. 生命周期
+### 生命周期
 ![vue生命周期](https://i.imgur.com/xnumWs2.png)
 
-### 2. 常用命令
+### 常用命令
 Vue.js提供了一些常用的内置指令，接下来我们将介绍以下几个内置指令：
 * v-if指令
 * v-show指令
@@ -48,7 +48,7 @@ Vue.js为最常用的两个指令`v-bind`和`v-on`提供了缩写方式。`v-bin
 <button @click="greet">Greet</button>
 ```
 
-### 3. 组件间通信
+### 组件间通信
 在子组件中定义props，可以让父组件的数据传递下来
 今天我们将着重介绍slot和父子组件之间的访问和通信，slot是一个非常有用的东西，它相当于一个内容插槽，它是我们重用组件的基础。Vue的事件系统独立于原生的DOM事件，它用于组件之间的通信
 本文的主要内容如下：
@@ -77,7 +77,7 @@ Vue 实例实现了一个自定义事件接口，用于在组件树中通信。�
 * 使用 $dispatch() 派发事件，事件沿着父链冒泡；
 * 使用 $broadcast() 广播事件，事件向下传导给所有的后代。
 
-### 4. 组件的创建与注册
+### 组件的创建与注册
 Vue.js的组件的使用有3个步骤：创建组件构造器、注册组件和使用组件。
 ![组件的创建与注册](https://i.imgur.com/0REImoZ.png)
 
@@ -108,7 +108,7 @@ Vue.js组件的API来源于三部分——prop，slot和事件。
 * 事件 允许组件触发外部环境的 action；
 * slot 允许外部环境插入内容到组件的视图结构内。
 
-### 5. 深拷贝
+### 深拷贝
 ```
 initItemForUpdate: function(p) {
     var c = c || {};
@@ -127,15 +127,6 @@ initItemForUpdate: function(p) {
     return c;
 }
 ```
-
-
-
-
-
-
-
-
-
 
 ## 参考链接  
 [Vue 官方说明](https://cn.vuejs.org/v2/guide/syntax.html)  

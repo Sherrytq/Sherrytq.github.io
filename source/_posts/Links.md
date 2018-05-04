@@ -1,12 +1,12 @@
 ---
-title: LINKS
+title: Links
 category: front-end
 tag: frontend
-archive: frontEnd
+archive: front-end
 ---
 
 ### css部分
-1. [前端布局基础概述](https://mp.weixin.qq.com/s/8eAfz_I5xIhh7oFRifxaFw)  
+- [前端布局基础概述](https://mp.weixin.qq.com/s/8eAfz_I5xIhh7oFRifxaFw)  
 
 ### 练习
 - [FreeCodeCamp](http://www.freecodecamp.com/map)

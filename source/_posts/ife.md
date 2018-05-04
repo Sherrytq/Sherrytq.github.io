@@ -2,20 +2,21 @@
 title: 百度前端学院2016练习
 category: front-end
 tag: [css,js]
-archive: frontEnd
+archive: front-end
 ---
-> 练习链接： http://ife.baidu.com/2016/task/all?qq-pf-to=pcqq.group
 
-### 1.Box-shadow
+## 练习链接
+[ http://ife.baidu.com/2016/task/all?qq-pf-to=pcqq.group]( http://ife.baidu.com/2016/task/all?qq-pf-to=pcqq.group " http://ife.baidu.com/2016/task/all?qq-pf-to=pcqq.group")
+
+### Box-shadow
 >box-shadow: h-shadow v-shadow blur spread color inset;
-### 2.空格 `&nbsp;`
-### 3.通用样式 `normalize.css` 
->链接： https://necolas.github.io/normalize.css/8.0.0/normalize.css	
+### 空格 `&nbsp;`
+### 通用样式 `normalize.css` 
+* link： https://necolas.github.io/normalize.css/8.0.0/normalize.css	
+* `cnpm install normalize.css`
 
-或者
->Cnpm install normalize.css
-
-### 4.Table 边框 border-collapse 属性设置是否将表格边框折叠为单一边框：
+### Table 边框 
+`border-collapse` 属性设置是否将表格边框折叠为单一边框：
 ```html
 table
 {
@@ -52,16 +53,15 @@ table,th, td
   </tbody>
 </table>
 ```
-### 5.Css 选择器 `first-child`
+### css 选择器 `first-child`
 
-### 6.Input radio 样式设置
-(1)用图片样式进行覆盖 可以设置透明度  
-(2)css设置样式
->参考连接   
->https://www.cnblogs.com/sakura-panda/p/7065449.html
->https://codepen.io/AngelaVelasquez/pen/Eypnq
+### Input radio 样式设置
+* 用图片样式进行覆盖 可以设置透明度  
+* css设置样式
+> 参考连接   
+[https://www.cnblogs.com/sakura-panda/p/7065449.html](https://www.cnblogs.com/sakura-panda/p/7065449.html "https://www.cnblogs.com/sakura-panda/p/7065449.html")
+[https://codepen.io/AngelaVelasquez/pen/Eypnq](>https://codepen.io/AngelaVelasquez/pen/Eypnq "https://codepen.io/AngelaVelasquez/pen/Eypnq")
 
- 
  
 ```html:
 <div for="male" class="radioBtn">
@@ -152,13 +152,13 @@ input[type=radio]:checked ~ label{
 }
 ```
 
-### 7. 三栏式布局 
->左边：float:left;  
+###  三栏式布局 
+左边：float:left;  
 右边：float:right;  
 中间：用margin 控制距离；  
 父选择器：清除浮动
 
-### 8.清除浮动
+### 清除浮动
 ```
 .clearfix:after {
   content: ".";
@@ -176,7 +176,7 @@ input[type=radio]:checked ~ label{
 }
 ```
 
-### 9. 页面水平 垂直 居中
+### 页面水平 垂直 居中
 ```
 /*方法一：知道高度和宽度*/
 .sub {
@@ -200,7 +200,8 @@ input[type=radio]:checked ~ label{
     transform: translate(-50%,-50%);
 }
 ```
-参考链接： [http://https://css-tricks.com/centering-css-complete-guide/(非常详细！)](http://https://css-tricks.com/centering-css-complete-guide/)
+## 参考链接
+[http://https://css-tricks.com/centering-css-complete-guide/(非常详细！)](http://https://css-tricks.com/centering-css-complete-guide/)
 
 
 

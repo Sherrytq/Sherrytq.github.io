@@ -1,8 +1,8 @@
 ---
-title: JSTIPS_03
+title: JsTips_03
 category: front-end
 tag: js
-archive: frontEnd
+archive: front-end
 ---
 
 ### 1.[js jq 中获得data*属性](https://segmentfault.com/a/1190000005770912)

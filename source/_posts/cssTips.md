@@ -50,3 +50,15 @@ archive: frontEnd
 ### 7. oo css的作用和注意事项
 ![](https://i.imgur.com/GkpMsHp.png)
 
+8. 文字过多，显示`...`的效果
+```css
+.title{
+text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+max-width:70%; //可省或者固定宽度 width: 60px;
+display: inline-block;
+}
+```
+
+
