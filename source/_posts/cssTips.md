@@ -61,4 +61,76 @@ display: inline-block;
 }
 ```
 
+### 其中textarea元素的高度为80px，而它的父元素div高度为84px，为什么会多出4px呢？
+
+设textarea为 display: block;
+
+### loading 动画效果
+```
+	<div class="loading ball-pulse">
+		<div></div> 
+		<div></div> 
+		<div></div> 
+		<span>加载中...</span>
+	</div>
+```
+
+```
+.loading.ball-pulse>div {
+    background-color: #999;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    margin: 1px;
+    animation-fill-mode: both;
+    display: inline-block;
+}
+
+.loading.ball-pulse>div:first-child {
+    animation: scale .75s -.24s infinite cubic-bezier(.2,.68,.18,1.08);
+}
+
+.loading.ball-pulse>div:nth-child(2) {
+    animation: scale .75s -.12s infinite cubic-bezier(.2,.68,.18,1.08);
+}
+
+.loading.ball-pulse>div:nth-child(3) {
+    animation: scale .75s 0s infinite cubic-bezier(.2,.68,.18,1.08);
+}
+
+@keyframes scale{
+	0%{
+		transform:scale(1);
+		opacity:1
+	}
+	45%{
+		transform:scale(.1);
+		opacity:.7
+	}
+	80%{
+		transform:scale(1);
+		opacity:1
+	}
+}
+```
+
+### 圆环旋转
+```
+.animateCircle {
+	-webkit-animation:circle 1s infinite linear;/*匀速 循环*/
+}
+
+@-webkit-keyframes circle{
+0%{ transform:rotate(0deg); }
+100%{ transform:rotate(-360deg); }
+}
+```
+
+### 文本只有两行
+[https://segmentfault.com/q/1010000005614773](https://segmentfault.com/q/1010000005614773 "https://segmentfault.com/q/1010000005614773")
+
+### 强制换行
+[http://www.iwms.net/n1919c40.aspx](http://www.iwms.net/n1919c40.aspx "http://www.iwms.net/n1919c40.aspx")
+
+
 
