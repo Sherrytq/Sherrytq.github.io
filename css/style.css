@@ -1464,3 +1464,6 @@ em.search-keyword {
   list-style: none; }
   .post-copyright li {
     margin: 8px 0; }
+
+img {
+  zoom: 50%; }
