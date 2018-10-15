@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>React_01 | 搓搓の博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">React_01</h1><a id="logo" href="/.">搓搓の博客</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">React_01</h1><div class="post-meta">Oct 12, 2018<span> | </span><span class="category"><a href="/categories/前端/">前端</a></span></div><div class="post-content"><h3 id="React-知识"><a href="#React-知识" class="headerlink" title="React 知识"></a>React 知识</h3><p>React 的核心思想是：封装组件。<br>各个组件维护自己的状态和 UI，当状态变更，自动重新渲染整个组件。<br>基于这种方式的一个直观感受就是我们不再需要不厌其烦地来回查找某个 DOM 元素，然后操作 DOM 去更改 UI。</p>
+<h3 id="React-大体包含的概念"><a href="#React-大体包含的概念" class="headerlink" title="React 大体包含的概念"></a>React 大体包含的概念</h3><ul>
+<li><strong>组件</strong></li>
+<li><strong>JSX</strong></li>
+<li><strong>Virtual DOM</strong> </li>
+<li><strong>Data Flow</strong></li>
+</ul>
+<h3 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a>组件的生命周期</h3><p><img src="http://upload-images.jianshu.io/upload_images/8952934-6183b3ea3c3749c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://i.imgur.com/HBH9ySZ.png" alt="流"></p>
+<p>###React-router</p>
+<p>可参考<a href="https://segmentfault.com/a/1190000004075348" target="_blank" rel="noopener">React-router</a></p>
+<h3 id="React-基本知识"><a href="#React-基本知识" class="headerlink" title="React 基本知识"></a>React 基本知识</h3><p><img src="https://i.imgur.com/EZnakf8.png" alt="">  </p>
+<p><img src="https://i.imgur.com/0qwoWvM.png" alt=""></p>
+<p><img src="https://i.imgur.com/ZH0TlBZ.png" alt=""></p>
+<p><img src="https://i.imgur.com/Nm4Ger0.png" alt=""></p>
+<p><img src="https://i.imgur.com/EzXrPJv.png" alt=""></p>
+<p><img src="https://i.imgur.com/SLit5kb.png" alt=""></p>
+<p><img src="https://i.imgur.com/HQSnC5O.png" alt=""></p>
+<h3 id="组件间通信"><a href="#组件间通信" class="headerlink" title="组件间通信"></a>组件间通信</h3><p>React中组件通信的三种方法：</p>
+<ul>
+<li>使用props，构建通信链</li>
+<li>在组件初始化的时候，保存组件的句柄，在其它组件中，使用此句柄达到直接访问组件的目的，完成通信</li>
+<li>使用PubSub模式</li>
+</ul>
+<p>第1种方式，在组件嵌套较深时，显示不适用。<br>第2种在组件很多时，也得定义维护很多变量。<br>PubSub模式有助于解藕和代码组织，在React的组件通信时，推荐使用此方法。  </p>
+<p>参考链接：<br><a href="http://www.alloyteam.com/2015/07/react-zu-jian-jian-tong-xin/" target="_blank" rel="noopener">react 组件间通信</a></p>
+<h3 id="React中的state说明"><a href="#React中的state说明" class="headerlink" title="React中的state说明"></a>React中的state说明</h3><ul>
+<li>哪些组件应该有 State？<br>大部分组件的工作应该是从 props 里取数据并渲染出来。但是，有时需要对用户输入、服务器请求或者时间变化等作出响应，这时才需要使用 State。<br>尝试把尽可能多的组件无状态化。 这样做能隔离 state，把它放到最合理的地方，也能减少冗余，同时易于解释程序运作过程。常用的模式是创建多个只负责渲染数据的无状态（stateless）组件，在它们的上层创建一个有状态（stateful）组件并把它的状态通过 props 传给子级。这个有状态的组件封装了所有用户的交互逻辑，而这些无状态组件则负责声明式地渲染数据。</li>
+<li><p>哪些 应该 作为 State？<br>State 应该包括那些可能被组件的事件处理器改变并触发用户界面更新的数据。 真实的应用中这种数据一般都很小且能被 JSON 序列化。当创建一个状态化的组件时，想象一下表示它的状态最少需要哪些数据，并只把这些数据存入 this.state。在 render() 里再根据 state 来计算你需要的其它数据。你会发现以这种方式思考和开发程序最终往往是正确的，因为如果在 state 里添加冗余数据或计算所得数据，需要你经常手动保持数据同步，不能让 React 来帮你处理。</p>
+</li>
+<li><p>哪些 不应该 作为 State？<br>this.state 应该仅包括能表示用户界面状态所需的最少数据。因此，它不应该包括：</p>
+</li>
+<li>计算所得数据： 不要担心根据 state 来预先计算数据 —— 把所有的计算都放到render() 里更容易保证用户界面和数据的一致性。例如，在 state 里有一个数组（listItems），我们要把数组长度渲染成字符串， 直接在 render() 里使用this.state.listItems.length + ‘ list items’ 比把它放到 state 里好的多。</li>
+<li>React 组件： 在 render() 里使用当前 props 和 state 来创建它。</li>
+<li>基于 props 的重复数据： 尽可能使用 props 来作为惟一数据来源。把 props 保存到 state 的一个有效的场景是需要知道它以前值的时候，因为未来的 props 可能会变化。</li>
+</ul>
+<h3 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h3><p>解决了react中处理state的问题<br>三大原则：<br>单一数据源<br>整个应用的 state 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 store 中。<br>State 是只读的<br>惟一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。<br>使用纯函数来执行修改<br>为了描述 action 如何改变 state tree ，你需要编写 reducers。Reducer 只是一些纯函数，它接收先前的 state 和 action，并返回新的 state。</p>
+<ul>
+<li>Action<br>Action 是把数据从应用（译者注：这里之所以不叫 view 是因为这些数据有可能是服务器响应，用户输入或其它非 view 的数据 ）传到 store 的有效载荷。它是 store 数据的唯一来源。一般来说你会通过store.dispatch() 将 action 传到 store。</li>
+<li>Reduce<br>Action 只是描述了有事情发生了这一事实，并没有指明应用如何更新 state。而这正是 reducer 要做的事情。<br>现在我们已经确定了 state 对象的结构，就可以开始开发 reducer。reducer 就是一个纯函数，接收旧的 state 和 action，返回新的 state。</li>
+</ul>
+<p><img src="https://i.imgur.com/nr5cyQ5.png" alt="action"><br><code>combineReducers()</code> 所做的只是生成一个函数，这个函数来调用你的一系列 reducer，每个 reducer 根据它们的 key 来筛选出 state 中的一部分数据并处理，然后这个生成的函数再将所有 reducer 的结果合并成一个大的对象</p>
+<ul>
+<li>Store<br><img src="https://i.imgur.com/pCc8jKk.png" alt="store"></li>
+</ul>
+<p>###参考链接</p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="noopener">阮一峰 react 入门</a></p>
+</div><div class="tags"><a href="/tags/React/">React</a></div><div class="post-nav"><a class="pre" href="/2018/10/12/blog/">Hexo + github 搭建个人博客</a><a class="next" href="/2018/05/01/奇葩大会/">奇葩大会观后感</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/话剧/">话剧</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/话剧/" style="font-size: 15px;">话剧</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/Handlebars/" style="font-size: 15px;">Handlebars</a> <a href="/tags/移动端/" style="font-size: 15px;">移动端</a> <a href="/tags/React/" style="font-size: 15px;">React</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/心情/" style="font-size: 15px;">心情</a> <a href="/tags/娱乐/" style="font-size: 15px;">娱乐</a> <a href="/tags/BFC/" style="font-size: 15px;">BFC</a> <a href="/tags/盒模型/" style="font-size: 15px;">盒模型</a> <a href="/tags/前端工具/" style="font-size: 15px;">前端工具</a> <a href="/tags/面试/" style="font-size: 15px;">面试</a> <a href="/tags/网络/" style="font-size: 15px;">网络</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/10/15/网络/">一次完整http 事务的过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/12/浏览器兼容性/">浏览器兼容性</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/12/前端工具/">前端工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/12/移动端/">移动端</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/12/盒模型/">盒模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/12/jsTips_04/">JsTips_04</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/12/jsTips_05/">jsTips_05</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/12/jsTips_03/">JsTips_03</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/12/jsTips_02/">JsTips_02</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/12/jsTips_01/">JsTips_01</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">搓搓の博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
