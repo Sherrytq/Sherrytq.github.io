@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>前端乱炖_01 | 搓搓の博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">前端乱炖_01</h1><a id="logo" href="/.">搓搓の博客</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">前端乱炖_01</h1><div class="post-meta">Oct 15, 2018<span> | </span><span class="category"><a href="/categories/前端/">前端</a></span></div><div class="post-content"><h3 id="js-观察者模式"><a href="#js-观察者模式" class="headerlink" title="js 观察者模式"></a>js 观察者模式</h3><p>Js 观察者模式也叫做发布订阅模式（Publish/Subscribe)</p>
+<ul>
+<li><p>分为3个部分 </p>
+<ul>
+<li>订阅 存储 对象的方法</li>
+<li>发布 发布 对象的方法</li>
+<li>退订 取消 对象的某一个方法</li>
+</ul>
+</li>
+<li><p>利用原型的特性实现一个观察者模式，代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Observer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.fns = [];</span><br><span class="line">&#125;</span><br><span class="line">Observer.prototype = &#123;</span><br><span class="line">    <span class="comment">//订阅</span></span><br><span class="line">    subscribe: <span class="function"><span class="keyword">function</span> (<span class="params">fn</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.fns.push(fn);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//退订</span></span><br><span class="line">    unsubscribe: <span class="function"><span class="keyword">function</span> (<span class="params">fn</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.fns = <span class="keyword">this</span>.fns.filter(</span><br><span class="line">                        <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</span><br><span class="line">                            <span class="keyword">if</span> (el !== fn) &#123;</span><br><span class="line">                                <span class="keyword">return</span> el;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    );</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//发布</span></span><br><span class="line">    update: <span class="function"><span class="keyword">function</span> (<span class="params">o, thisObj</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> scope = thisObj || <span class="built_in">window</span>;</span><br><span class="line">        <span class="keyword">this</span>.fns.forEach(</span><br><span class="line">                        <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</span><br><span class="line">                            el.call(scope, o);</span><br><span class="line">                        &#125;</span><br><span class="line">                    );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> Observer;</span><br><span class="line"><span class="keyword">var</span> f1 = <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Robbin: '</span> + data + <span class="string">', 赶紧干活了！'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f2 = <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Randall: '</span> + data + <span class="string">', 找他加点工资去！'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">o.subscribe(f1);</span><br><span class="line">o.subscribe(f2);</span><br><span class="line"></span><br><span class="line">o.update(<span class="string">"Tom回来了！"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//退订f1</span></span><br><span class="line">o.unsubscribe(f1);</span><br><span class="line"><span class="comment">//再来验证</span></span><br><span class="line">o.update(<span class="string">"Tom回来了！"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>应用</p>
+<ul>
+<li>它定义了一种一对多的关系，当一个对象发生改变时，多个对该对象有依赖的其他对象也会跟着做出相应改变，这就非常适合用观察者模式来实现。使用观察者模式可以根据需要增加或删除对象，解决一对多对象间的耦合关系，使程序更易于扩展和维护。</li>
+<li>观察者的使用场合就是：当一个对象的改变需要同时改变其它对象，并且它不知道具体有多少对象需要改变的时候，就应该考虑使用观察者模式。</li>
+</ul>
+</li>
+<li><p>参考链接</p>
+<ul>
+<li><a href="https://www.cnblogs.com/TomXu/archive/2012/03/02/2355128.html" target="_blank" rel="noopener">深入理解JavaScript系列（32）：设计模式之观察者模式</a></li>
+<li><a href="http://www.bkjia.com/Javascript/1074536.html" target="_blank" rel="noopener">Javascript设计模式理论与实战：观察者模式</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><ul>
+<li><p>MVC </p>
+<ul>
+<li>包括3个部分<ul>
+<li>M（model）保存数据</li>
+<li>V    (view)  视图层</li>
+<li>C （control)  控制逻辑</li>
+</ul>
+</li>
+<li><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181015181703382.png" alt="image-20181015181703382"><ul>
+<li>View 传送指令到 Controller</li>
+<li>Controller 完成业务逻辑后，要求 Model 改变状态</li>
+<li>Model 将新的数据发送到 View，用户得到反馈</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>MVVM （model view viewModel) </p>
+<ul>
+<li>包括3个部分<ul>
+<li>model （数据 js对象）</li>
+<li>viewModel (Dom listeners  Directive) </li>
+<li>view (DOM)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181015182226680.png" alt="image-20181015182226680"></p>
+<p>它采用双向绑定（data-binding）：View的变动，自动反映在 ViewModel，反之亦然</p>
+<p>其中VUE是MVVM </p>
+</li>
+<li><p>参考链接：</p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html" target="_blank" rel="noopener"> MVC，MVP 和 MVVM 的图示</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="px-em-和-rem"><a href="#px-em-和-rem" class="headerlink" title="px em 和 rem"></a>px em 和 rem</h3><ul>
+<li>任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em=16px。那么12px=0.75em,10px=0.625em。为了简化font-size的换算，需要在css中的body选择器中声明Font-size=62.5%，这就使em值变为 16px*62.5%=10px, 这样12px=1.2em, 10px=1em, 也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。</li>
+<li>em 相对于父元素</li>
+<li>rem 相对于根元素</li>
+</ul>
+<h3 id="microtask-和macrotask-的区别"><a href="#microtask-和macrotask-的区别" class="headerlink" title="microtask 和macrotask 的区别"></a>microtask 和macrotask 的区别</h3><p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181016115143213.png" alt="image-20181016115143213"></p>
+<ul>
+<li>Macrotask  包含生成dom对象、解析HTML、执行主线程js代码、更改当前URL还有其他的一些事件如页面加载、输入、网络事件和定时器事件。从浏览器的角度来看，macrotask代表一些离散的独立的工作。当执行完一个task后，浏览器可以继续其他的工作如页面重渲染和垃圾回收。</li>
+<li>Microtasks则是完成一些更新应用程序状态的较小任务，如处理promise的回调和DOM的修改，这些任务在浏览器重渲染前执行。Microtask应该以异步的方式尽快执行，其开销比执行一个新的macrotask要小。Microtasks使得我们可以在UI重渲染之前执行某些任务，从而避免了不必要的UI渲染，这些渲染可能导致显示的应用程序状态不一致。</li>
+<li>参考链接：<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/24460769" target="_blank" rel="noopener">HTML系列：macrotask和microtask</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Event-loop-和-js-的事件运行机制"><a href="#Event-loop-和-js-的事件运行机制" class="headerlink" title="Event loop 和 js 的事件运行机制"></a>Event loop 和 js 的事件运行机制</h3><ul>
+<li>js 是单线程的语言，I/O 的操作会导致堵塞，所以有两个线程<ul>
+<li>主线程 同步 </li>
+<li>Event loop 线程 异步 点击事件，加载事件，定时器事件</li>
+</ul>
+</li>
+<li>主线程 运行完毕后, 运行event loop中已经完成的事件</li>
+<li>参考链接： <ul>
+<li><a href="http://www.ruanyifeng.com/blog/2013/10/event_loop.html" target="_blank" rel="noopener">什么是 Event Loop？</a> </li>
+<li><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="noopener">JavaScript 运行机制详解：再谈Event Loop</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Virtual-Dom"><a href="#Virtual-Dom" class="headerlink" title="Virtual Dom"></a>Virtual Dom</h3><ul>
+<li><p>应用 React  and Vue</p>
+</li>
+<li><p>Html  -&gt; 通过jsx 编译 -&gt; VD -&gt; 生成DOM</p>
+</li>
+<li><p>Virtual Dome 是一个对象， 主要包括3个变量： tag ,props, children</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    tag: "div",</span><br><span class="line">    props: &#123;&#125;,</span><br><span class="line">    children: [</span><br><span class="line">        "Hello World", </span><br><span class="line">        &#123;</span><br><span class="line">            tag: "ul",</span><br><span class="line">            props: &#123;&#125;,</span><br><span class="line">            children: [&#123;</span><br><span class="line">                tag: "li",</span><br><span class="line">                props: &#123;</span><br><span class="line">                    id: 1,</span><br><span class="line">                    class: "li-1"</span><br><span class="line">                &#125;,</span><br><span class="line">                children: ["第", 1]</span><br><span class="line">            &#125;]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>Diff 算法</p>
+<ul>
+<li><p>state变化，生成新的VD</p>
+</li>
+<li><p>比较VD与之前VD的异同</p>
+</li>
+<li><p>生成差异对象（<code>patch</code>）</p>
+<ul>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*差异对象的结构*/</span> </span><br><span class="line">&#123;</span><br><span class="line">    type,</span><br><span class="line">    vdom,</span><br><span class="line">    props: [&#123;</span><br><span class="line">               type,</span><br><span class="line">               key,</span><br><span class="line">               value </span><br><span class="line">            &#125;]</span><br><span class="line">    children</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>遍历差异对象并更新dom</p>
+</li>
+</ul>
+</li>
+<li><p>参考链接</p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000016129036" target="_blank" rel="noopener">你不知道的Virtual DOM（一）：Virtual Dom介绍</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="JQ-中的promise-实现-和-deferred-对象"><a href="#JQ-中的promise-实现-和-deferred-对象" class="headerlink" title="JQ 中的promise 实现 和 deferred 对象"></a>JQ 中的promise 实现 和 deferred 对象</h3><ul>
+<li><p>deferred  （$.deferred）for 异步编程 </p>
+</li>
+<li><p>deferred 有三种状态： </p>
+<ul>
+<li>pending(待定)  方法:   .always </li>
+<li>resolved(成功)  方法： .done    .always</li>
+<li>rejected(失败)   方法： .failed  .always</li>
+</ul>
+</li>
+<li><p>.always 是绑定的回调函数，无聊成功与否都会执行</p>
+</li>
+<li><p>deferred 还有个.then 的方法， 简化.done 和 .failed， 实现<strong>任务链条</strong>（chain tasks）。</p>
+</li>
+<li><p>promise </p>
+<ul>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = deferred.promise();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>deferred</strong>: <em>reject, resolve, done, fail, then, always</em>   内部使用</p>
+</li>
+<li><p><strong>promise</strong>: <em>done, fail, then, always</em>   外部使用</p>
+</li>
+</ul>
+</li>
+<li><p>参考链接：</p>
+<ul>
+<li><a href="https://www.cnblogs.com/AndyWithPassion/p/jquery_deferred_promise.html" target="_blank" rel="noopener">延期（deferred）的承诺（promise） — jq异步编程浅析</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="浏览器请求处理流程"><a href="#浏览器请求处理流程" class="headerlink" title="浏览器请求处理流程"></a>浏览器请求处理流程</h3><p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181029100046367.png" alt="image-20181029100046367"></p>
+</div><div class="tags"><a href="/tags/js/">js</a><a href="/tags/jquery/">jquery</a></div><div class="post-nav"><a class="pre" href="/2018/10/16/跨域/">跨域</a><a class="next" href="/2018/10/15/响应式开发/">响应式</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他技术/">其他技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/话剧/">话剧</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/前端工具/" style="font-size: 15px;">前端工具</a> <a href="/tags/React/" style="font-size: 15px;">React</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/心情/" style="font-size: 15px;">心情</a> <a href="/tags/Handlebars/" style="font-size: 15px;">Handlebars</a> <a href="/tags/区块链/" style="font-size: 15px;">区块链</a> <a href="/tags/响应式/" style="font-size: 15px;">响应式</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/项目复盘/" style="font-size: 15px;">项目复盘</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/话剧/" style="font-size: 15px;">话剧</a> <a href="/tags/BFC/" style="font-size: 15px;">BFC</a> <a href="/tags/盒模型/" style="font-size: 15px;">盒模型</a> <a href="/tags/娱乐/" style="font-size: 15px;">娱乐</a> <a href="/tags/网络/" style="font-size: 15px;">网络</a> <a href="/tags/跨域/" style="font-size: 15px;">跨域</a> <a href="/tags/移动端/" style="font-size: 15px;">移动端</a> <a href="/tags/面试/" style="font-size: 15px;">面试</a> <a href="/tags/es6/" style="font-size: 15px;">es6</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/前端面试/" style="font-size: 15px;">前端面试</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/前端面试/">前端面试</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/25/滚动优化/">移动端图片滚动优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/前端乱炖_02/">前端乱炖_02</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/区块链/">区块链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/复盘/">复盘</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/17/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/16/跨域/">跨域</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/15/前端乱炖/">前端乱炖_01</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/15/响应式开发/">响应式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/15/网络/">一次完整http 事务的过程</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">搓搓の博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

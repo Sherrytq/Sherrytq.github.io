@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>前端乱炖_02 | 搓搓の博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">前端乱炖_02</h1><a id="logo" href="/.">搓搓の博客</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">前端乱炖_02</h1><div class="post-meta">Oct 21, 2018<span> | </span><span class="category"><a href="/categories/前端/">前端</a></span></div><div class="post-content"><h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><h3 id="模块化使用和编译环境"><a href="#模块化使用和编译环境" class="headerlink" title="模块化使用和编译环境"></a>模块化使用和编译环境</h3><ul>
+<li><p>模块化的基本语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*util.js*/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123; <span class="attr">a</span>: <span class="number">100</span>&#125;</span><br><span class="line"><span class="comment">/*index.js*/</span></span><br><span class="line"><span class="keyword">import</span> util <span class="keyword">from</span> <span class="string">'./util.js'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开发环境配置</p>
+<p>编译<code>babel</code> 编译es6语法</p>
+<p>模块化可以用webpack 和 rollup , gulp</p>
+</li>
+<li><p>关于js 众多模块化的标准 </p>
+<ul>
+<li>AMD  require.js </li>
+<li>CMD</li>
+<li>ES6 </li>
+</ul>
+</li>
+</ul>
+<h3 id="Class-与普通构造函数的区别"><a href="#Class-与普通构造函数的区别" class="headerlink" title="Class 与普通构造函数的区别"></a>Class 与普通构造函数的区别</h3><ul>
+<li><p>js 构造函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MathHandle</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x;</span><br><span class="line">    <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line">MathHandle.prototype.add = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.x + <span class="keyword">this</span>.y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> MathHandle(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(m.add())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>class 基本语法</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MathHandle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(x, y)&#123;</span><br><span class="line">        <span class="keyword">this</span>.x = x;</span><br><span class="line">        <span class="keyword">this</span>.y = y;</span><br><span class="line">    &#125;</span><br><span class="line">    add()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.x + <span class="keyword">this</span>.y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> m = <span class="keyword">new</span> MathHandle(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(m.add());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>语法糖 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> MathHandle <span class="comment">//function</span></span><br><span class="line">MathHandle === MathHandle.prototyope.constructor <span class="comment">//true</span></span><br><span class="line">m.__proto__ === MathHandle.protitype <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>继承</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*构造函数继承*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.eat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'animal eat'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//狗</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.bark = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'dog bark'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line">Dog.prototype = <span class="keyword">new</span> Animal() ;</span><br><span class="line"><span class="comment">//哈士奇</span></span><br><span class="line"><span class="keyword">var</span> hashiqi = <span class="keyword">new</span> Dog()</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*ES6 继承*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    eat()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span> eat`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">super</span>(name);</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    say()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span> say`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> dog = <span class="keyword">new</span> Dog(<span class="string">'哈士奇'</span>)；</span><br><span class="line">dog.say();</span><br><span class="line">dog.eat();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>区别</p>
+<ul>
+<li>class 在语法上更加贴合面向对象的写法</li>
+<li>class 实现继承更加易读、易理解</li>
+<li>本质还是语法糖，使用prototype</li>
+</ul>
+</li>
+</ul>
+<h3 id="Promise-的用法"><a href="#Promise-的用法" class="headerlink" title="Promise 的用法"></a>Promise 的用法</h3><ul>
+<li><p>Callback hell </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadImg</span>(<span class="params">src, callback, fail</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>)</span><br><span class="line">    img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        callback(img)</span><br><span class="line">    &#125;</span><br><span class="line">    img.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        fail()</span><br><span class="line">    &#125;</span><br><span class="line">    img.src = src</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> src = <span class="string">'http://xxx.png'</span></span><br><span class="line">loadImg(src, <span class="function"><span class="keyword">function</span>(<span class="params">img</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(img.width);</span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'failed'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Promise 语法*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadImg</span>(<span class="params">src</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">        img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">            resolve(img)</span><br><span class="line">        &#125;</span><br><span class="line">        img.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">            reject()</span><br><span class="line">        &#125;</span><br><span class="line">        img.src = src;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> promise;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> src = <span class="string">'http://xxx.png'</span>;</span><br><span class="line"><span class="keyword">var</span> result = loadImg(src);</span><br><span class="line">result.then(<span class="function"><span class="keyword">function</span>(<span class="params">img </span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(img.width)</span><br><span class="line">&#125;), <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'failed'</span>);</span><br><span class="line">&#125;</span><br><span class="line">result.then(<span class="function"><span class="keyword">function</span>(<span class="params">img</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(img.height);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</code></pre></li>
+<li><p>总结</p>
+<ul>
+<li>new Promise 实例，而且要return</li>
+<li>new Promise 时要传入函数，函数有resolve reject 两个参数</li>
+<li>成功时执行resolve()  失败时执行reject()</li>
+<li>then 监听结果</li>
+</ul>
+</li>
+</ul>
+<h3 id="ES6-其他常用功能"><a href="#ES6-其他常用功能" class="headerlink" title="ES6 其他常用功能"></a>ES6 其他常用功能</h3><ul>
+<li><p>let/const</p>
+<p>const 定义的不能更改</p>
+</li>
+<li><p>多行字符串/模板变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//js</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'zhangsan'</span>, age = <span class="number">20</span>, html = <span class="string">''</span>;</span><br><span class="line">html += <span class="string">'&lt;div&gt;'</span>;</span><br><span class="line">html += <span class="string">'&lt;p&gt;'</span>+name + <span class="string">'&lt;/p&gt;'</span>;</span><br><span class="line">html += <span class="string">'&lt;p&gt;'</span>+age + <span class="string">'&lt;/p&gt;'</span>;</span><br><span class="line">html += <span class="string">'&lt;/div&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">'zhangsan'</span>, age = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">const</span> html = <span class="string">`&lt;div&gt;</span></span><br><span class="line"><span class="string">                &lt;p&gt;<span class="subst">$&#123;name&#125;</span>&lt;/p&gt;</span></span><br><span class="line"><span class="string">                &lt;p&gt;<span class="subst">$&#123;age&#125;</span>&lt;/p&gt;</span></span><br><span class="line"><span class="string">              &lt;/div&gt;`</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解构赋值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JS</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">a</span>: <span class="number">100</span>, <span class="attr">b</span>: <span class="number">200</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> a = obj.a;</span><br><span class="line"><span class="keyword">var</span> b = obj.b</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">'xxx'</span>,<span class="string">'yyy'</span>];</span><br><span class="line"><span class="keyword">var</span> x = arr[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123;<span class="attr">a</span>: <span class="number">10</span>, <span class="attr">b</span>:<span class="number">20</span>,<span class="attr">c</span>:<span class="number">30</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> &#123;a,c&#125; = obj;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="string">'xxx'</span>,<span class="string">'yyy'</span>,<span class="string">'zzz'</span>];</span><br><span class="line"><span class="keyword">const</span> [x,y,z] = arr</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>块级作用域</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//js</span></span><br><span class="line"><span class="keyword">var</span> obj =&#123;<span class="attr">a</span>: <span class="number">100</span>, <span class="attr">b</span>: <span class="number">200</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> item <span class="keyword">in</span> obj)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(item) <span class="comment">//'b'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">const</span> obj =&#123;<span class="attr">a</span>: <span class="number">100</span>, <span class="attr">b</span>: <span class="number">200</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> item <span class="keyword">in</span> obj)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(item) <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数默认参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(b == <span class="literal">null</span>)&#123;</span><br><span class="line">        b = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params">a,b=<span class="number">0</span></span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>箭头函数（解决this指向，函数体最近的变量）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//js</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> item +<span class="number">1</span>;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">arr.map(<span class="function"><span class="params">item</span> =&gt;</span> item + <span class="number">1</span>);</span><br><span class="line">arr.map(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index)</span><br><span class="line">    <span class="keyword">return</span> item + <span class="number">1</span>;</span><br><span class="line">&#125; )</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><h3 id="什么是单线程，-与异步关系"><a href="#什么是单线程，-与异步关系" class="headerlink" title="什么是单线程， 与异步关系"></a>什么是单线程， 与异步关系</h3><ul>
+<li>单线程，只有一个线程，只能做一件事</li>
+<li>原因： 避免DOM 渲染冲突</li>
+<li>解决方案：异步</li>
+<li>实现方式： event-loop</li>
+</ul>
+<h3 id="什么是event-loop（事件轮询）"><a href="#什么是event-loop（事件轮询）" class="headerlink" title="什么是event-loop（事件轮询）"></a>什么是event-loop（事件轮询）</h3><ul>
+<li>Js 实现异步的具体解决方案</li>
+<li>同步代码，直接执行</li>
+<li>异步函数先放在异步队列中</li>
+<li>待同步函数执行完步，轮询执行异步队列的函数</li>
+</ul>
+<h3 id="如果只有jquery如何解决异步-deferred"><a href="#如果只有jquery如何解决异步-deferred" class="headerlink" title="如果只有jquery如何解决异步(deferred)"></a>如果只有jquery如何解决异步(deferred)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waitHandle</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> dtd = $.Deferred() <span class="comment">//创建一个deferred 对象</span></span><br><span class="line">   </span><br><span class="line">    <span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> task = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'执行完成'</span>)；</span><br><span class="line">        dtd.resolve() <span class="comment">//表示异步任务已经完成</span></span><br><span class="line">      <span class="comment">//dtd.reject(); //表示异步任务失败或者出错</span></span><br><span class="line">      &#125;</span><br><span class="line">      setTimeout(task，<span class="number">2000</span>)；</span><br><span class="line">      <span class="keyword">return</span> dtd;<span class="comment">// 要求返回deferred 对象</span></span><br><span class="line">     <span class="comment">// return dtd.promise(); //这里返回promise 对象</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//注意一定要有返回值</span></span><br><span class="line">    <span class="keyword">return</span> wait(dtd);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> w = waitHandle();</span><br><span class="line">w.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'ok 1'</span>);</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'err 1'</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'ok 2'</span>);</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'err 2'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//还有w.done w.fail  开源封闭原则</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waitHandle</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> dtd = $.Deferred() <span class="comment">//创建一个deferred 对象</span></span><br><span class="line">   </span><br><span class="line">    <span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> task = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'执行完成'</span>)；</span><br><span class="line">        dtd.resolve() <span class="comment">//表示异步任务已经完成</span></span><br><span class="line">      <span class="comment">//dtd.reject(); //表示异步任务失败或者出错</span></span><br><span class="line">      &#125;</span><br><span class="line">      setTimeout(task，<span class="number">2000</span>)；</span><br><span class="line">      <span class="keyword">return</span> dtd.promise(); <span class="comment">//**这里返回promise 对象**</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//注意一定要有返回值</span></span><br><span class="line">    <span class="keyword">return</span> wait(dtd);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> w = waitHandle();</span><br><span class="line">$.when(w)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'ok 1'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'ok 2'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//w.reject() //执行这句会直接报错</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>总结<ul>
+<li>dtd 的API 分为两类, 两类应该分开，否则后果严重，所以引入promise 对象只有第二类方式，不能直接用第一类<ul>
+<li>dtd.resolve()   dtd.reject()</li>
+<li>dtd.then()   dtd.done()  dtd.fail()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Promise-的基本使用和原理"><a href="#Promise-的基本使用和原理" class="headerlink" title="Promise 的基本使用和原理"></a>Promise 的基本使用和原理</h3><ul>
+<li><p>基本语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Promise 语法*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadImg</span>(<span class="params">src</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">        <span class="comment">//throw new Error('自定义错误)</span></span><br><span class="line">        img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">            resolve(img)</span><br><span class="line">        &#125;</span><br><span class="line">        img.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">            reject(<span class="string">'图片加载失败'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        img.src = src;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> promise;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> src = <span class="string">'http://xxx.png'</span>;</span><br><span class="line"><span class="keyword">var</span> result = loadImg(src);</span><br><span class="line">result.then(<span class="function"><span class="keyword">function</span>(<span class="params">img </span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(img.width)</span><br><span class="line">&#125;), <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'failed'</span>);</span><br><span class="line">&#125;</span><br><span class="line">result.then(<span class="function"><span class="keyword">function</span>(<span class="params">img</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(img.heig ht);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异常捕获（Error 和 reject都要考虑）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//规定: them 只接受一个参数，最后统一用catch 捕获异常</span></span><br><span class="line">result.then(<span class="function"><span class="keyword">function</span>(<span class="params">img </span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(img.width)</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">ex</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//最后统一catch</span></span><br><span class="line">    <span class="built_in">console</span>.log(ex);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多个串联</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> src1= <span class="string">'http://xxx.png'</span>;</span><br><span class="line"><span class="keyword">var</span> result1 = loadImg(src1);</span><br><span class="line"><span class="keyword">var</span> src2= <span class="string">'http://xxx.png'</span>;</span><br><span class="line"><span class="keyword">var</span> result2 = loadImg(src2);</span><br><span class="line"></span><br><span class="line">result1.then(<span class="function"><span class="keyword">function</span>(<span class="params">img </span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'第一个图片加载完成'</span>);</span><br><span class="line">    <span class="keyword">return</span> result2;</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">img </span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'第二个图片加载完成'</span>);</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">ex</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//最后统一catch</span></span><br><span class="line">    <span class="built_in">console</span>.log(ex);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Promise.all 和 Promise.race</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Promise.all 接收一个promise 对象的数组</span></span><br><span class="line"><span class="comment">//待全部完成之后，统一执行success</span></span><br><span class="line"><span class="built_in">Promise</span>.all([result1,result2]).then(<span class="function"><span class="params">datas</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//接收都的datas 是一个数组，一次包含多个promise返回的内容</span></span><br><span class="line">    <span class="built_in">console</span>.log(datas[<span class="number">0</span>]);</span><br><span class="line">    consoel.log(datas[<span class="number">1</span>]);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//Promise.race 接收一个包含多个promise 对象的数组</span></span><br><span class="line"><span class="comment">//只要有一个完成，就执行success </span></span><br><span class="line"><span class="built_in">Promise</span>.race([result1,result2]).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//data 即最先执行完成的promise的返回值</span></span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Promise 的标准</p>
+<ul>
+<li>状态变化<ul>
+<li>三种状态： pending fulfilled rejected</li>
+<li>初始状态是pending </li>
+<li>pending 变为fulfilled, 或者pending 变为rejected</li>
+<li>状态变化不可逆</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="async-await-的使用"><a href="#async-await-的使用" class="headerlink" title="async/await 的使用"></a>async/await 的使用</h3><ul>
+<li><p>then 只是将callback 拆分了</p>
+</li>
+<li><p>Async /await 是最直接的同步写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> load = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> result1 = <span class="keyword">await</span> loadImg(src1);</span><br><span class="line">    <span class="built_in">console</span>.log(result1);</span><br><span class="line">    <span class="keyword">const</span> result2 = <span class="keyword">await</span> loadImg(src2);</span><br><span class="line">    <span class="built_in">console</span>.log(result2);</span><br><span class="line">&#125;</span><br><span class="line">load();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用法</p>
+<ul>
+<li>使用await , 函数必须用async 标识</li>
+<li>await 后面跟的是一个Promise 实例</li>
+<li>需要babel-polyfill</li>
+</ul>
+</li>
+</ul>
+<h3 id="当前异步的解决方案"><a href="#当前异步的解决方案" class="headerlink" title="当前异步的解决方案"></a>当前异步的解决方案</h3><ul>
+<li>jQuery Deferred</li>
+<li>Promise</li>
+<li>Async/awit</li>
+<li>Generator </li>
+</ul>
+<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><h3 id="原型的实际应用"><a href="#原型的实际应用" class="headerlink" title="原型的实际应用"></a>原型的实际应用</h3><ul>
+<li><p>jquey简单使用</p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181021223952726.png" alt="image-20181021223952726"></p>
+</li>
+<li><p>jquery 如何使用原型</p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181021224301010.png" alt="image-20181021224301010"></p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181021224551664.png" alt="image-20181021224551664"></p>
+<p><strong>为什么把原型方法放在$.fn？</strong></p>
+<p>因为要扩展插件比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.fn.getNodeName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>[<span class="number">0</span>].nodeName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>只有$ 会暴露在window 全局变量</li>
+<li>将插件扩展统一到$.fn.xxx 这一个接口，方便使用</li>
+</ul>
+</li>
+</ul>
+<h2 id="Virtual-Dom"><a href="#Virtual-Dom" class="headerlink" title="Virtual Dom"></a>Virtual Dom</h2><h3 id="什么是vdom-为何要用vdom"><a href="#什么是vdom-为何要用vdom" class="headerlink" title="什么是vdom,为何要用vdom"></a>什么是vdom,为何要用vdom</h3><ul>
+<li><p>虚拟dom 用js 模拟DOM 结构</p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022103236641.png" alt="image-20181022103236641"></p>
+</li>
+<li><p>dom 变化的对比，放在js 层来做</p>
+</li>
+<li><p>提高重绘性能</p>
+</li>
+<li><p>遇到的问题</p>
+<ul>
+<li>Dom 操作是’昂贵‘的，js 运行效率高</li>
+<li>尽量减少Dom 操作</li>
+</ul>
+</li>
+</ul>
+<h3 id="vdom-如何使用，核心函数有哪些"><a href="#vdom-如何使用，核心函数有哪些" class="headerlink" title="vdom 如何使用，核心函数有哪些"></a>vdom 如何使用，核心函数有哪些</h3><ul>
+<li>snabbdom </li>
+<li>核心API</li>
+</ul>
+<h3 id="了解diff-算法"><a href="#了解diff-算法" class="headerlink" title="了解diff 算法"></a>了解diff 算法</h3><ul>
+<li><p>什么是diff 算法</p>
+</li>
+<li><p>Vdom 为何用diff 算法</p>
+<ul>
+<li>Dom 操作是’昂贵‘的，尽量减少Dom 操作 </li>
+<li>找出本次DOM必须更新的节点来更新，其他的不更新</li>
+<li>‘找出’的过程，就是diff 算法</li>
+</ul>
+</li>
+<li><p>diff 算法的实现流程 </p>
+<ul>
+<li>patch(container,vnode)</li>
+<li><p>patch(vcode,newVcode)</p>
+</li>
+<li><p>主要需要解决问题： </p>
+<ul>
+<li>节点的新增和删除  </li>
+<li>节点的重新排序</li>
+<li>节点属性、样式、事件绑定</li>
+<li>性能优化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h2><h3 id="之前使用jquery-和-现在使用Vue-或-react-框架的区别"><a href="#之前使用jquery-和-现在使用Vue-或-react-框架的区别" class="headerlink" title="之前使用jquery 和 现在使用Vue 或 react 框架的区别"></a>之前使用jquery 和 现在使用Vue 或 react 框架的区别</h3><p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022120649087.png" alt="image-20181022120649087"></p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022120829082.png" alt="image-20181022120829082"></p>
+<ul>
+<li>jQuery 和 vue 的区别<ul>
+<li>数据和视图的分离，对扩展开放，对修改封闭</li>
+<li>以数据驱动视图，只关心数据变化，dom 操作被封装</li>
+</ul>
+</li>
+</ul>
+<h3 id="如何理解MVVM"><a href="#如何理解MVVM" class="headerlink" title="如何理解MVVM"></a>如何理解MVVM</h3><ul>
+<li><p>MVC</p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022122129775.png" alt="image-20181022122129775"></p>
+</li>
+<li><p>MVVM</p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022122414997.png" alt="image-20181022122414997"></p>
+</li>
+<li><p>MVVM 框架的三大要素</p>
+<ul>
+<li>响应式：vue 如何监听到data 的每个属性变化</li>
+<li>模板引擎： vue 的模板如何被解析，指令如何处理</li>
+<li>渲染 ： vue 的模板如何被渲染成html，以及渲染的过程</li>
+</ul>
+</li>
+</ul>
+<h3 id="vue-如何实现响应式"><a href="#vue-如何实现响应式" class="headerlink" title="vue 如何实现响应式"></a>vue 如何实现响应式</h3><ul>
+<li><p>什么是响应式</p>
+<ul>
+<li>修改data 属性后，vue 立刻监听到</li>
+<li>Data 属性被代理到vm 上</li>
+</ul>
+</li>
+<li><p>Object.defineProperty</p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022123640285.png" alt="image-20181022123640285"></p>
+</li>
+<li><p>模拟</p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022124056094.png" alt="image-20181022124056094"></p>
+</li>
+</ul>
+<h3 id="vue-如何解析模板"><a href="#vue-如何解析模板" class="headerlink" title="vue 如何解析模板"></a>vue 如何解析模板</h3><ul>
+<li><p>模板是什么</p>
+<ul>
+<li>本质： 字符串</li>
+<li>有逻辑 如 v-if v-for </li>
+<li>与Html 格式很像，但有很大的区别</li>
+<li>最终还是转换为html 来显示</li>
+<li>模板最终转换成js 代码（render 函数）</li>
+</ul>
+</li>
+<li><p>render 函数</p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022125142467.png" alt="image-20181022125142467"></p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022125233721.png" alt="image-20181022125233721"></p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022125338958.png" alt="image-20181022125338958"></p>
+</li>
+<li><p>render 函数与vdom</p>
+</li>
+</ul>
+<h3 id="介绍vue-的实现流程"><a href="#介绍vue-的实现流程" class="headerlink" title="介绍vue 的实现流程"></a>介绍vue 的实现流程</h3><ul>
+<li><p>解析模板成render 函数</p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022133631422.png" alt="image-20181022133631422"></p>
+</li>
+<li><p>响应式开始监听</p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022133701966.png" alt="image-20181022133701966"></p>
+</li>
+<li><p>首次渲染，显示页面，且绑定依赖</p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022133801115.png" alt="image-20181022133801115"></p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022133925483.png" alt="image-20181022133925483"></p>
+</li>
+<li><p>data 属性变化，触发render  </p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022134044690.png" alt="image-20181022134044690"></p>
+</li>
+</ul>
+<h2 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h2><h3 id="对组件化的理解"><a href="#对组件化的理解" class="headerlink" title="对组件化的理解"></a>对组件化的理解</h3><ul>
+<li>组件的封装<ul>
+<li>视图</li>
+<li>数据</li>
+<li>变化逻辑（数据驱动视图变化）</li>
+</ul>
+</li>
+<li>组件的复用<ul>
+<li>props 传递</li>
+<li>复用 </li>
+</ul>
+</li>
+</ul>
+<h3 id="jsx-是什么"><a href="#jsx-是什么" class="headerlink" title="jsx 是什么"></a>jsx 是什么</h3><ul>
+<li><p>JSX 语法</p>
+</li>
+<li><p>JSX解析成JS</p>
+<p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022140225064.png" alt="image-20181022140225064"></p>
+</li>
+<li><p>独立的标准 </p>
+</li>
+</ul>
+<h3 id="jsx-和-vdom-是什么关系"><a href="#jsx-和-vdom-是什么关系" class="headerlink" title="jsx 和 vdom 是什么关系"></a>jsx 和 vdom 是什么关系</h3><p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022140605423.png" alt="image-20181022140605423"></p>
+<h3 id="简述react-的setState"><a href="#简述react-的setState" class="headerlink" title="简述react 的setState"></a>简述react 的setState</h3><p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022140707964.png" alt="image-20181022140707964"></p>
+<h3 id="阐述自己如何比较React-和vue"><a href="#阐述自己如何比较React-和vue" class="headerlink" title="阐述自己如何比较React 和vue"></a>阐述自己如何比较React 和vue</h3><p><img src="/Users/sherry/Library/Application Support/typora-user-images/image-20181022140932562.png" alt="image-20181022140932562"></p>
+</div><div class="tags"><a href="/tags/js/">js</a><a href="/tags/jquery/">jquery</a><a href="/tags/es6/">es6</a><a href="/tags/vue/">vue</a><a href="/tags/react/">react</a></div><div class="post-nav"><a class="pre" href="/2018/10/25/滚动优化/">移动端图片滚动优化</a><a class="next" href="/2018/10/21/区块链/">区块链</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他技术/">其他技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/话剧/">话剧</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/前端工具/" style="font-size: 15px;">前端工具</a> <a href="/tags/React/" style="font-size: 15px;">React</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/心情/" style="font-size: 15px;">心情</a> <a href="/tags/Handlebars/" style="font-size: 15px;">Handlebars</a> <a href="/tags/区块链/" style="font-size: 15px;">区块链</a> <a href="/tags/响应式/" style="font-size: 15px;">响应式</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/项目复盘/" style="font-size: 15px;">项目复盘</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/话剧/" style="font-size: 15px;">话剧</a> <a href="/tags/BFC/" style="font-size: 15px;">BFC</a> <a href="/tags/盒模型/" style="font-size: 15px;">盒模型</a> <a href="/tags/娱乐/" style="font-size: 15px;">娱乐</a> <a href="/tags/网络/" style="font-size: 15px;">网络</a> <a href="/tags/跨域/" style="font-size: 15px;">跨域</a> <a href="/tags/移动端/" style="font-size: 15px;">移动端</a> <a href="/tags/面试/" style="font-size: 15px;">面试</a> <a href="/tags/es6/" style="font-size: 15px;">es6</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/前端面试/" style="font-size: 15px;">前端面试</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/前端面试/">前端面试</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/25/滚动优化/">移动端图片滚动优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/前端乱炖_02/">前端乱炖_02</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/区块链/">区块链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/复盘/">复盘</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/17/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/16/跨域/">跨域</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/15/前端乱炖/">前端乱炖_01</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/15/响应式开发/">响应式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/15/网络/">一次完整http 事务的过程</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">搓搓の博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

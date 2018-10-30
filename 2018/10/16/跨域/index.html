@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>跨域 | 搓搓の博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">跨域</h1><a id="logo" href="/.">搓搓の博客</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">跨域</h1><div class="post-meta">Oct 16, 2018<span> | </span><span class="category"><a href="/categories/前端/">前端</a></span></div><div class="post-content"><h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><p>同源策略/SOP（Same origin policy）是一种约定，由Netscape公司1995年引入浏览器，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSFR等攻击。所谓同源是指”协议+域名+端口”三者相同，即便两个不同的域名指向同一个ip地址，也非同源。</p>
+<p>同源策略限制以下几种行为</p>
+<ul>
+<li>Cookie、LocalStorage 和 IndexDB 无法读取</li>
+<li>DOM 和 Js对象无法获得</li>
+<li>AJAX 请求不能发送</li>
+</ul>
+<h3 id="跨域解决方案"><a href="#跨域解决方案" class="headerlink" title="跨域解决方案"></a>跨域解决方案</h3><ul>
+<li><p>通过jsonp跨域</p>
+<ul>
+<li><p>可以通过script标签实现跨域请求，然后在服务端输出JSON数据并执行回调函数，从而解决了跨域的数据请求，这就是jsonp的核心。</p>
+<ul>
+<li><p>首先在客户端注册一个callback, 然后把callback的名字传给服务器。</p>
+</li>
+<li><p>服务器先生成 json 数据。 然后以 javascript 语法的方式，生成一个function , function 名字就是传递上来的参数 jsonp. 最后将 json 数据直接以入参的方式，放置到 function 中，这样就生成了一段 js 语法的文档，返回给客户端。</p>
+</li>
+<li><p>客户端浏览器，解析script标签，并执行返回的 javascript 文档，此时数据作为参数，传入到了客户端预先定义好的 callback 函数里.（动态执行回调函数）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">    script.type = <span class="string">'text/javascript'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 传参并指定回调执行函数为onBack</span></span><br><span class="line">    script.src = <span class="string">'http://www.domain2.com:8080/login?user=admin&amp;callback=onBack'</span>;</span><br><span class="line">    <span class="built_in">document</span>.head.appendChild(script);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 回调执行函数</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">onBack</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        alert(<span class="built_in">JSON</span>.stringify(res));</span><br><span class="line">    &#125;</span><br><span class="line"> &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Jquery 中 使用ajax</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url: <span class="string">'http://www.domain2.com:8080/login'</span>,</span><br><span class="line">    type: <span class="string">'get'</span>,</span><br><span class="line">    dataType: <span class="string">'jsonp'</span>,  <span class="comment">// 请求方式为jsonp</span></span><br><span class="line">    jsonpCallback: <span class="string">"onBack"</span>,    <span class="comment">// 自定义回调函数名</span></span><br><span class="line">    data: &#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>缺点： 只能get 请求</p>
+</li>
+</ul>
+</li>
+<li><p>document.domain + iframe跨域</p>
+<ul>
+<li><p>此方案仅限主域相同，子域不同的跨域应用场景。</p>
+<p>实现原理：两个页面都通过js强制设置document.domain为基础主域，就实现了同域。</p>
+</li>
+</ul>
+</li>
+<li><p>location.hash + iframe</p>
+</li>
+<li><p>window.name + iframe跨域</p>
+</li>
+<li><p>postMessage跨域</p>
+</li>
+<li><p>跨域资源共享（CORS）</p>
+<ul>
+<li>普通跨域请求：只服务端设置Access-Control-Allow-Origin即可，前端无须设置，若要带cookie请求：前后端都需要设置。</li>
+</ul>
+</li>
+<li><p>nginx代理跨域</p>
+</li>
+<li><p>nodejs中间件代理跨域</p>
+</li>
+<li><p>WebSocket协议跨域</p>
+</li>
+</ul>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
+<li><a href="https://segmentfault.com/a/1190000011145364" target="_blank" rel="noopener">前端常见跨域解决方案（全）</a></li>
+</ul>
+</div><div class="tags"><a href="/tags/跨域/">跨域</a></div><div class="post-nav"><a class="pre" href="/2018/10/17/webpack/">webpack</a><a class="next" href="/2018/10/15/前端乱炖/">前端乱炖_01</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他技术/">其他技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/话剧/">话剧</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/前端工具/" style="font-size: 15px;">前端工具</a> <a href="/tags/React/" style="font-size: 15px;">React</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/心情/" style="font-size: 15px;">心情</a> <a href="/tags/Handlebars/" style="font-size: 15px;">Handlebars</a> <a href="/tags/区块链/" style="font-size: 15px;">区块链</a> <a href="/tags/响应式/" style="font-size: 15px;">响应式</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/项目复盘/" style="font-size: 15px;">项目复盘</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/话剧/" style="font-size: 15px;">话剧</a> <a href="/tags/BFC/" style="font-size: 15px;">BFC</a> <a href="/tags/盒模型/" style="font-size: 15px;">盒模型</a> <a href="/tags/娱乐/" style="font-size: 15px;">娱乐</a> <a href="/tags/网络/" style="font-size: 15px;">网络</a> <a href="/tags/跨域/" style="font-size: 15px;">跨域</a> <a href="/tags/移动端/" style="font-size: 15px;">移动端</a> <a href="/tags/面试/" style="font-size: 15px;">面试</a> <a href="/tags/es6/" style="font-size: 15px;">es6</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/前端面试/" style="font-size: 15px;">前端面试</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/前端面试/">前端面试</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/25/滚动优化/">移动端图片滚动优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/前端乱炖_02/">前端乱炖_02</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/区块链/">区块链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/复盘/">复盘</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/17/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/16/跨域/">跨域</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/15/前端乱炖/">前端乱炖_01</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/15/响应式开发/">响应式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/15/网络/">一次完整http 事务的过程</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">搓搓の博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
